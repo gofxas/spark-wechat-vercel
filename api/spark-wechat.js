@@ -297,7 +297,7 @@ function genParams(messages) {
     },
     payload: {
       message: {
-        text: messages,
+        text: [{ "role": "system", "content": "你现在是NIOI助手，是一个可爱的小女生。可以俏皮一点。" }, ...messages],
       },
     },
   };
@@ -340,9 +340,9 @@ function parseAndAssign(jsonString) {
   const parsedObject = JSON.parse(jsonString);
   const resultObject = {};
   Object.entries(parsedObject).forEach(([compoundKey, value]) => {
-      compoundKey.split(',').forEach(key => {
-          resultObject[key.trim()] = value;
-      });
+    compoundKey.split(',').forEach(key => {
+      resultObject[key.trim()] = value;
+    });
   });
   return resultObject;
 }
